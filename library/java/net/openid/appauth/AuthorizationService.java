@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.browser.customtabs.CustomTabsIntent;
+import android.util.Log;
 
 import net.openid.appauth.AuthorizationException.GeneralErrors;
 import net.openid.appauth.AuthorizationException.RegistrationRequestErrors;
@@ -74,6 +75,8 @@ public class AuthorizationService {
 
     private boolean mDisposed = false;
 
+    private final String TAG = "AppAuth-Android-feature";
+
     /**
      * Creates an AuthorizationService instance, using the
      * {@link AppAuthConfiguration#DEFAULT default configuration}. Note that
@@ -82,6 +85,8 @@ public class AuthorizationService {
      */
     public AuthorizationService(@NonNull Context context) {
         this(context, AppAuthConfiguration.DEFAULT);
+
+        Log.d(TAG, "Creating AuthorizationService in feature branch");
     }
 
     /**
@@ -98,6 +103,8 @@ public class AuthorizationService {
                         context,
                         clientConfiguration.getBrowserMatcher()),
                 new CustomTabManager(context));
+
+        Log.d(TAG, "Creating AuthorizationService in feature branch");
     }
 
     /**
@@ -116,6 +123,8 @@ public class AuthorizationService {
         if (browser != null && browser.useCustomTab) {
             mCustomTabManager.bind(browser.packageName);
         }
+
+        Log.d(TAG, "Creating AuthorizationService in feature branch");
     }
 
     public CustomTabManager getCustomTabManager() {
